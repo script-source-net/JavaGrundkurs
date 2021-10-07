@@ -3,9 +3,23 @@ package ch.ibw.java.oop.lektion1;
 import java.util.Date;
 
 public class Student {
+    public static final int MATHEMATIKSTUDIUM = 1;
+    public static final int INFORMATIKSTUDIUM = 2;
+    public static final int ARCHITEKTURSTUDIUM = 3;
+    public static final int WIRTSCHAFTLICHESSTUDIUM = 4;
+    public static final int BIOLOGIESTUDIUM = 5;
+    public static final int GESCHICHTSSTUDIUM = 6;
+    public static final int GERMANIKSTUDIUM = 7;
+    public static final int POLITOLOGIESTUDIUM = 8;
+    public static final int PHYSIKSTUDIUM = 9;
+    public static final int MAENNLICH = 1;
+    public static final int WEIBLICH = 2;
+
     private String name;
     private int number;
     private int birthYear;
+    private int fach;
+    private int gender;
     private String subject;
     private static final String GENDER = "";
     private static int numberOfStudents;
@@ -20,7 +34,7 @@ public class Student {
         this.name = name;
         setNumber(number);
         setBirthYear(birthYear);
-        setNumberOfStudents(1);
+        setNumberOfStudents();
         setSubject(subject);
     }
 
@@ -28,8 +42,8 @@ public class Student {
         return numberOfStudents;
     }
 
-    public static void setNumberOfStudents(int numberOfStudents) {
-        Student.numberOfStudents += numberOfStudents;
+    public static void setNumberOfStudents() {
+        numberOfStudents++;
     }
 
     public String getName() {
@@ -46,7 +60,7 @@ public class Student {
     }
 
     public Student setNumber(int number) {
-        if(isValidNumber(number)){
+        if(isValidNumber()){
             this.number = number;
         } else {
             System.out.println("Number is not valid!");
@@ -68,18 +82,18 @@ public class Student {
     }
 
     public Student setBirthYear(int birthYear) {
-        if(isValidBirthYear(birthYear)){
+        if(isValidBirthYear()){
             this.birthYear = birthYear;
         }
         System.out.println("No valid birthday!");
         return this;
     }
 
-    private boolean isValidNumber(int number){
-         return number%2 != 0 && number > 1000 && number < 99999;
+    private boolean isValidNumber(){
+        return number%2 != 0 && number >= 10000 && number <= 99999;
     }
 
-    private boolean isValidBirthYear(int birthYear){
-        return birthYear > 1930 && birthYear < 2022;
+    private boolean isValidBirthYear(){
+        return birthYear >= 1930 && birthYear <= 2022;
     }
 }
